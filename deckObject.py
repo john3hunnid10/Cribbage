@@ -4,7 +4,7 @@ import random
 
 #card class
 class Card:
-    def __init__(self,rank,value,suit):
+    def __init__(self,rank:str,value:int,suit:str):
         self.suit=suit
         self.rank=rank
         self.value=value
