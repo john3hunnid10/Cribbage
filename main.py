@@ -23,15 +23,15 @@ def PointsCounter(hand: list[Card]) -> int:
                 points+=2
         #if the observed combination has 3 or more cards, its viable for a run
         #the combination is sorted in rank order to make checking for runs easier
-        if(len>3):
+        if(len(combins)>3):
             rankAscending=sorted(combins,key=lambda card: rank_order[card.rank])
-            if(len==3):
+            if(len(combins)==3):
                 if(rank_order[combins[0].rank]+1==rank_order[combins[1].rank] and rank_order[combins[1].rank]+1==rank_order[combins[2].rank]):
                     runs+=[combins[0],combins[1],combins[2]]
             #run of 5 is also easy to check            
-            if(len==4):
+            if(len(combins)==4):
                 rankAscending=sorted(combins,key=lambda card: rank_order[card.rank])
-            if(len==5):
+            if(len(combins)==5):
                 if(rank_order[combins[0].rank]+1==rank_order[combins[1].rank]):
                     if(rank_order[combins[1].rank]+1==rank_order[combins[2].rank]):
                         if(rank_order[combins[2].rank]+1==rank_order[combins[3].rank]):
