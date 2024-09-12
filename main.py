@@ -39,9 +39,7 @@ def PointsCounter(hand: list[Card]) -> int:
             elif(len(combins)==3) and check_run(combins):
                 runs+=[combins[0],combins[1],combins[2]]          
             #elif(len(combins)==4): 
-            #Need to finish!!!
-
-            #run of 5 is also easy to check  
+            #Need to finish!!! 
             
 
 
