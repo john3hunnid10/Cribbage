@@ -3,7 +3,7 @@ import itertools
 def main(hand):
     return -1
 
-def PointsCounter(hand) -> int:
+def PointsCounter(hand: list[Card]) -> int:
     #this first creates each combination of 2+ cards to use to add up points
     #the rank order is stored, so that the hand can be sorted in rank order in order to form runs
     rank_order={'A':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':11,'Q':12,'K':13}
