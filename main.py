@@ -5,6 +5,7 @@ def main(hand):
     return -1
 
 def check_run(cards: list[Card]) -> bool:
+    #the combination is sorted in rank order to make checking for runs easier
     rankAscending=sorted(combins,key=lambda card: rank_order[card.rank])
     for i in range(len(rankAscending) - 1):
         if rank_order[rankAscending[i].rank]+1!=rank_order[rankAscending[i+1].rank]:
@@ -31,15 +32,17 @@ def PointsCounter(hand: list[Card]) -> int:
             if(combins[0].rank==combins[1].rank):
                 points+=2
         #if the observed combination has 3 or more cards, its viable for a run
-        #the combination is sorted in rank order to make checking for runs easier
         if(len(combins)>3):
-            if(len(combins)==3) and check_run(combins):
-                runs+=[combins[0],combins[1],combins[2]]          
-            if(len(combins)==4):
-                rankAscending=sorted(combins,key=lambda card: rank_order[card.rank])
-            #run of 5 is also easy to check  
+            #if all 5 cards are a run then there are no permutations to account for
             if(len(combins)==5) and check_run(combins):    
-                 runs+=[combins[0],combins[1],combins[2],combins[3],combins[4]]
+                points+=5
+            elif(len(combins)==3) and check_run(combins):
+                runs+=[combins[0],combins[1],combins[2]]          
+            #elif(len(combins)==4): 
+            #Need to finish!!!
+
+            #run of 5 is also easy to check  
+            
 
 
 
