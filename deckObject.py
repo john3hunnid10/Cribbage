@@ -23,9 +23,15 @@ class Deck:
     #shuffles the deck
     def shuffle(self):
         random.shuffle(self.cards)
+
+    #shows how many cards are left
+    def __len__(self):
+        return len(self.cards)
     
     #Note: always shuffle before deal 
     def deal(self, numCards):
+        if(numCards>len(self.cards)):
+            return -1
         deal=self.cards[:numCards]
         self.cards=self.cards[numCards:]
         return deal
