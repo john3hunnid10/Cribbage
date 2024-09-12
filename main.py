@@ -3,7 +3,7 @@ import itertools
 def main(hand):
     return -1
 
-def PointsCounter(hand):
+def PointsCounter(hand) -> int:
     #this first creates each combination of 2+ cards to use to add up points
     combinations=[]
     points=0
