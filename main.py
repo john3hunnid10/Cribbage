@@ -1,12 +1,21 @@
 from deckObject import Card, Deck
 import itertools
+rank_order={'A':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':11,'Q':12,'K':13}
 def main(hand):
     return -1
+
+def check_run(cards: list[Card]) -> bool:
+    rankAscending=sorted(combins,key=lambda card: rank_order[card.rank])
+    for i in range(len(rankAscending) - 1):
+        if rank_order[rankAscending[i].rank]+1!=rank_order[rankAscending[i+1].rank]:
+            return False
+    return True
+
 
 def PointsCounter(hand: list[Card]) -> int:
     #this first creates each combination of 2+ cards to use to add up points
     #the rank order is stored, so that the hand can be sorted in rank order in order to form runs
-    rank_order={'A':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':11,'Q':12,'K':13}
+    
     combinations=[]
     points=0
     runs=[]
@@ -24,19 +33,13 @@ def PointsCounter(hand: list[Card]) -> int:
         #if the observed combination has 3 or more cards, its viable for a run
         #the combination is sorted in rank order to make checking for runs easier
         if(len(combins)>3):
-            rankAscending=sorted(combins,key=lambda card: rank_order[card.rank])
-            if(len(combins)==3):
-                if(rank_order[combins[0].rank]+1==rank_order[combins[1].rank] and rank_order[combins[1].rank]+1==rank_order[combins[2].rank]):
-                    runs+=[combins[0],combins[1],combins[2]]
-            #run of 5 is also easy to check            
+            if(len(combins)==3) and check_run(combins):
+                runs+=[combins[0],combins[1],combins[2]]          
             if(len(combins)==4):
                 rankAscending=sorted(combins,key=lambda card: rank_order[card.rank])
-            if(len(combins)==5):
-                if(rank_order[combins[0].rank]+1==rank_order[combins[1].rank]):
-                    if(rank_order[combins[1].rank]+1==rank_order[combins[2].rank]):
-                        if(rank_order[combins[2].rank]+1==rank_order[combins[3].rank]):
-                            if(rank_order[combins[3].rank]+1==rank_order[combins[4].rank]):
-                                runs+=[combins[0],combins[1],combins[2],combins[3],combins[4]]
+            #run of 5 is also easy to check  
+            if(len(combins)==5) and check_run(combins):    
+                 runs+=[combins[0],combins[1],combins[2],combins[3],combins[4]]
 
 
 
