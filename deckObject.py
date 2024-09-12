@@ -8,6 +8,9 @@ class Card:
         self.suit=suit
         self.rank=rank
         self.value=value
+    #print function for testing
+    def __repr__(self):
+        return f"{self.rank} of {self.suit} (Value: {self.value})"
 
 class Deck:
     #available suits H=hearts, D=diamonds, C=clubs, S=spades 
