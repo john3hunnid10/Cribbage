@@ -32,7 +32,7 @@ class Deck:
     def deal(self, numCards):
         if(numCards>len(self.cards)):
             return -1
-        deal=self.cards[:numCards]
+        hand=self.cards[:numCards]
         self.cards=self.cards[numCards:]
-        return deal
+        return hand
     #the deal returned is a list of Card Objects
