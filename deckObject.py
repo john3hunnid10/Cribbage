@@ -35,3 +35,4 @@ class Deck:
         deal=self.cards[:numCards]
         self.cards=self.cards[numCards:]
         return deal
+    #the deal returned is a list of Card Objects
