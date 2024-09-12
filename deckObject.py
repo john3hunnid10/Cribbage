@@ -4,7 +4,7 @@ import random
 
 #card class
 class Card:
-    def __init__(self,suit,rank,value):
+    def __init__(self,rank,value,suit):
         self.suit=suit
         self.rank=rank
         self.value=value
@@ -18,7 +18,7 @@ class Deck:
         ('8',8),('9',9),('10',10),('J',10),('Q',10),('K',10)]
     #The deck is constructed with every combination of suit & rank, and the value is added to card object as well
     def __init__(self):
-        self.cards=[Card(suit,rank,value) for suit in self.suits for rank,value in self.rankValTuple]
+        self.cards=[Card(rank,value,suit) for rank,value in self.rankValTuple for suit in self.suits]
     
     #shuffles the deck
     def shuffle(self):

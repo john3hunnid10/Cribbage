@@ -8,4 +8,9 @@ def PointsCounter(hand):
     combinations=[]
     for r in range(2, (len(hand)+1)):
         combinations.extend(itertools.extend.combinations(hand,r))
-    
+hand1=[Card('5',5,'S'),
+      Card('K',10,'S'),
+      Card('J',10,'C'),
+      Card('10',10,'D'),
+      Card('5',5,'H')
+      ]
