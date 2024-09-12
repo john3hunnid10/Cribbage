@@ -9,6 +9,7 @@ def PointsCounter(hand: list[Card]) -> int:
     rank_order={'A':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':11,'Q':12,'K':13}
     combinations=[]
     points=0
+    runs=[]
     for r in range(2, (len(hand)+1)):
         combinations.extend(itertools.combinations(hand,r))
     for combins in combinations:
@@ -22,7 +23,10 @@ def PointsCounter(hand: list[Card]) -> int:
                 points+=2
         #if the observed combination has 3 or more cards, its viable for a run
         #the combination is sorted in rank order to make checking for runs easier
-        if(len>=3):
+        if(len==3):
+            if(rank_order[combins[0].rank]+1==rank_order[combins[1].rank] and rank_order[combins[1].rank]+1==rank_order[combins[2].rank]):
+                runs+=[combins[0],combins[1],combins[2]]
+        if(len>3):
             rankAscending=sorted(combins,key=lambda card: rank_order[card.rank])
 
 
