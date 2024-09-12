@@ -32,7 +32,7 @@ class Deck:
         return len(self.cards)
     
     #Note: always shuffle before deal 
-    def deal(self, numCards):
+    def deal(self, numCards:int):
         if(numCards>len(self.cards)):
             return -1
         hand=self.cards[:numCards]
