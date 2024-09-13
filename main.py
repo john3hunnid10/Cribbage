@@ -1,5 +1,6 @@
 from deckObject import Card, Deck
 import itertools
+#the rank order is stored, so that the hand can be sorted in rank order in order to form runs
 rank_order={'A':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':11,'Q':12,'K':13}
 def main(hand):
     return -1
@@ -29,8 +30,6 @@ def check_flush(cards: list[Card])->int:
 
 def PointsCounter(hand: list[Card]) -> int:
     #this first creates each combination of 2+ cards to use to add up points
-    #the rank order is stored, so that the hand can be sorted in rank order in order to form runs
-    
     combinations=[]
     points=0
     for r in range(2, (len(hand)+1)):
@@ -40,11 +39,11 @@ def PointsCounter(hand: list[Card]) -> int:
         sumOfHand=sum(card.value for card in combins)
         if(sumOfHand==15):
             points+=2
-        #testing for pairs and since pair royal is 6 (the three pairs that can be made), points are only added as pairs
+        #testing for pairs and since pair royal is 6 (the three pairs that can be made), points are only added as pairs not 3 of a kind
         if(len(combins))==2:
             if(combins[0].rank==combins[1].rank):
                 points+=2
-        #if the observed combination has 3 or more cards, its viable for a run
+       #in order to prevent redundancy, runs and flushes are only checked when the whole hand is being observed 
         if(len(combins)==5):
             points+=check_run(combins)
             points+=check_flush(combins)
