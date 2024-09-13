@@ -62,14 +62,14 @@ hand2=[Card('5',5,'S'),
       Card('6',6,'H'),
       Card('J',10,'C'),
       Card('10',10,'D'),
-      Card('4',4,'C')]
+      Card('4',4,'C')
+    ]
 hand3=[Card('4',4,'H'),
        Card('2',2,'H'),
        Card('K',10,'H'),
        Card('9',9,'H'),
        Card('A',1,'H')
-       
-       ]
+    ]
 print("hand1 is:",PointsCounter(hand1))
 print("hand2 is:",PointsCounter(hand2))
 print("hand3 is:",PointsCounter(hand3)+4)
