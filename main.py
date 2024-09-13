@@ -7,19 +7,21 @@ def main(hand):
 def check_run(cards: list[Card])->int:
     #the combination is sorted in rank order to make checking for runs easier
     rankAscending=sorted((cards),key=lambda card: rank_order[card.rank])
-    runLength=0
-    for i in range(len(rankAscending) - 1):
-        if rank_order[rankAscending[i].rank]+1!=rank_order[rankAscending[i+1].rank]:
-            runLength=1
-        runLength+=1
+    runLength=1
+    maxRunLength=0
+    for i in range(len(rankAscending)-1):
+        if rank_order[rankAscending[i].rank]+1==rank_order[rankAscending[i+1].rank]:
+            runLength+=1
+        elif (runLength>=3):
+            maxRunLength=max(maxRunLength,runLength)
+        runLength=1
     if(runLength>=3):
-        return (runLength)
-    else:
-        return (runLength)
+        maxRunLength=max(maxRunLength,runLength)
+    return maxRunLength
 def check_flush(cards: list[Card])->int:
     #since a 4 card flush can only be awarded if the 4 cards are in the original hand, the points will be added to the value before the flop
     #therefore when it is a 5 card flush it is only worth 1 more point so that is why 5 points aren't being added
-    for i in range(len(cards)):
+    for i in range(len(cards)-1):
         if(cards[i].suit!=cards[i+1].suit):
             return 0
     return 1
@@ -31,7 +33,6 @@ def PointsCounter(hand: list[Card]) -> int:
     
     combinations=[]
     points=0
-    runs=[]
     for r in range(2, (len(hand)+1)):
         combinations.extend(itertools.combinations(hand,r))
     for combins in combinations:
@@ -62,5 +63,13 @@ hand2=[Card('5',5,'S'),
       Card('J',10,'C'),
       Card('10',10,'D'),
       Card('4',4,'C')]
+hand3=[Card('4',4,'H'),
+       Card('2',2,'H'),
+       Card('K',10,'H'),
+       Card('9',9,'H'),
+       Card('A',1,'H')
+       
+       ]
 print("hand1 is:",PointsCounter(hand1))
 print("hand2 is:",PointsCounter(hand2))
+print("hand3 is:",PointsCounter(hand3)+4)
