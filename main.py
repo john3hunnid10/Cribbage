@@ -37,7 +37,7 @@ def PointsCounter(hand: list[Card]) -> int:
                 points+=2
         #if the observed combination has 3 or more cards, its viable for a run
         if(len(combins)==5):
-            point+=check_run(combins)
+            points+=check_run(combins)
 
 
 
