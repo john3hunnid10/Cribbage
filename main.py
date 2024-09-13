@@ -15,6 +15,13 @@ def check_run(cards: list[Card])->int:
     if(runLength<3):
         return 0
     return (runLength)
+def check_flush(cards: list[Card])->int:
+    #since a 4 card flush can only be awarded if the 4 cards are in the original hand, the points will be added to the value before the flop
+    #therefore when it is a 5 card flush it is only worth 1 more point so that is why 5 points aren't being added
+    for i in range(len(cards)):
+        if(cards[i].suit!=cards[i+1].suit):
+            return 0
+    return 1
 
 
 def PointsCounter(hand: list[Card]) -> int:
@@ -38,6 +45,7 @@ def PointsCounter(hand: list[Card]) -> int:
         #if the observed combination has 3 or more cards, its viable for a run
         if(len(combins)==5):
             points+=check_run(combins)
+            points+=check_flush(combins)
 
 
 
