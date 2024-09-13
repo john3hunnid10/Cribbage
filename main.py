@@ -4,13 +4,17 @@ rank_order={'A':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':11
 def main(hand):
     return -1
 
-def check_run(cards: list[Card]) -> bool:
+def check_run(cards: list[Card])->int:
     #the combination is sorted in rank order to make checking for runs easier
     rankAscending=sorted(combins,key=lambda card: rank_order[card.rank])
+    runLength=0
     for i in range(len(rankAscending) - 1):
         if rank_order[rankAscending[i].rank]+1!=rank_order[rankAscending[i+1].rank]:
-            return False
-    return True
+            return 0
+        runLength+=1
+    if(runLength<3):
+        return 0
+    return (runLength)
 
 
 def PointsCounter(hand: list[Card]) -> int:
@@ -32,15 +36,8 @@ def PointsCounter(hand: list[Card]) -> int:
             if(combins[0].rank==combins[1].rank):
                 points+=2
         #if the observed combination has 3 or more cards, its viable for a run
-        if(len(combins)>3):
-            #if all 5 cards are a run then there are no permutations to account for
-            if(len(combins)==5) and check_run(combins):    
-                points+=5
-            elif(len(combins)==3) and check_run(combins):
-                runs+=[combins[0],combins[1],combins[2]]          
-            #elif(len(combins)==4): 
-            #Need to finish!!! 
-            
+        if(len(combins)==5):
+            point+=check_run(combins)
 
 
 
