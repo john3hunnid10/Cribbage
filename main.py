@@ -6,7 +6,7 @@ def main(hand):
 
 def check_run(cards: list[Card])->int:
     #the combination is sorted in rank order to make checking for runs easier
-    rankAscending=sorted(combins,key=lambda card: rank_order[card.rank])
+    rankAscending=sorted((cards),key=lambda card: rank_order[card.rank])
     runLength=0
     for i in range(len(rankAscending) - 1):
         if rank_order[rankAscending[i].rank]+1!=rank_order[rankAscending[i+1].rank]:
@@ -46,6 +46,7 @@ def PointsCounter(hand: list[Card]) -> int:
         if(len(combins)==5):
             points+=check_run(combins)
             points+=check_flush(combins)
+    return points
 
 
 
@@ -55,7 +56,4 @@ hand1=[Card('5',5,'S'),
       Card('10',10,'D'),
       Card('5',5,'H')
       ]
-combinations1=PointsCounter(hand1)
-for combins in combinations1:
-    if(len(combins))==2:
-        print(combins[0].rank,combins[1].rank)
+print(PointsCounter(hand1))
