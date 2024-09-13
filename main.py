@@ -10,11 +10,12 @@ def check_run(cards: list[Card])->int:
     runLength=0
     for i in range(len(rankAscending) - 1):
         if rank_order[rankAscending[i].rank]+1!=rank_order[rankAscending[i+1].rank]:
-            return 0
+            runLength=1
         runLength+=1
-    if(runLength<3):
-        return 0
-    return (runLength)
+    if(runLength>=3):
+        return (runLength)
+    else:
+        return (runLength)
 def check_flush(cards: list[Card])->int:
     #since a 4 card flush can only be awarded if the 4 cards are in the original hand, the points will be added to the value before the flop
     #therefore when it is a 5 card flush it is only worth 1 more point so that is why 5 points aren't being added
@@ -55,5 +56,11 @@ hand1=[Card('5',5,'S'),
       Card('J',10,'C'),
       Card('10',10,'D'),
       Card('5',5,'H')
-      ]
-print(PointsCounter(hand1))
+    ]
+hand2=[Card('5',5,'S'),
+      Card('6',6,'H'),
+      Card('J',10,'C'),
+      Card('10',10,'D'),
+      Card('4',4,'C')]
+print("hand1 is:",PointsCounter(hand1))
+print("hand2 is:",PointsCounter(hand2))
