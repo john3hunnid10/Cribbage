@@ -3,7 +3,22 @@ import itertools
 #the rank order is stored, so that the hand can be sorted in rank order in order to form runs
 rank_order={'A':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':11,'Q':12,'K':13}
 def main(hand):
-    return -1
+    deck=Deck()
+    deck.shuffle()
+    flops=deck.deal(46)
+    
+    
+
+def averagePoints(hand,flops):
+    #if the 4 card had is a flush, it will always be worth 4 points or more.
+    #that is why check_flush returns 1, because when called later while checking a 5 card hand, a full flush is 5 points.
+    #the reason the check is done before is because in cribbage you can only get a flush by having the 4 cards in your original hand.
+    if(check_flush(hand)==1):
+        avgPoints=4
+    else:
+        avgPoints
+    avgPoints+=sum([PointsCounter(hand+[flopCard]) for flopCard in flops])/46
+    return avgPoints
 
 def check_run(cards: list[Card])->int:
     #the combination is sorted in rank order to make checking for runs easier
@@ -69,6 +84,13 @@ hand3=[Card('4',4,'H'),
        Card('9',9,'H'),
        Card('A',1,'H')
     ]
+
+FourCardhand1=[Card('5',5,'S'),
+      Card('K',10,'S'),
+      Card('J',10,'C'),
+      Card('10',10,'D'),
+    ]
 print("hand1 is:",PointsCounter(hand1))
 print("hand2 is:",PointsCounter(hand2))
 print("hand3 is:",PointsCounter(hand3)+4)
+print("average points for FourCardHand1 is:",main(FourCardhand1))
