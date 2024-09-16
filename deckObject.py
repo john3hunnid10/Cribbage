@@ -39,3 +39,9 @@ class Deck:
         self.cards=self.cards[numCards:]
         return hand
     #the deal returned is a list of Card Objects
+
+    #removal function, it loops through the deck and takes out the specified cards
+    def removeCards(self, hand):
+        for cards in hand:
+            for cards in self.cards:
+                self.cards.remove(cards)
