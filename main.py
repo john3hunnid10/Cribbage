@@ -120,5 +120,4 @@ SixCardHand=[Card('5',5,'S'),
 print("hand1 is:",PointsCounter(hand1))
 print("hand2 is:",PointsCounter(hand2))
 print("hand3 is:",PointsCounter(hand3)+4)
-print("average points for FourCardHand1 is:",main(FourCardhand1))
 print("the best 4 card hand, given the input:",main(SixCardHand))
