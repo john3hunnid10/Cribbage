@@ -4,8 +4,21 @@ import itertools
 rank_order={'A':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':11,'Q':12,'K':13}
 def main(hand):
     deck=Deck()
+    #TODO: remove the 6 cards passed in by the hand
+    #making a list of all 4 card combinations in a 6 card hand
     deck.shuffle()
     flops=deck.deal(46)
+    FourCardcombins=[]
+    FourCardcombins.extend(itertools.combinations(hand,4))
+    FourCardAvgs=[]
+    for combins in FourCardcombins:
+        FourCardAvgs.append(averagePoints(combins,flops))
+    MaxHandIndex=FourCardAvgs.index(max(FourCardAvgs))
+    MaxHand=FourCardcombins[MaxHandIndex]
+    return MaxHand
+    
+
+    
     
     
 
