@@ -40,13 +40,12 @@ def averagePoints(hand: list[Card], flops: list[Card])->int:
 
 def check_run(cards: list[Card])->int:
     #the rank order is stored, so that the hand can be sorted in rank order in order to form runs
-    rank_order={'A':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':11,'Q':12,'K':13}
     #the combination is sorted in rank order to make checking for runs easier
-    rankAscending=sorted((cards),key=lambda card: rank_order[card.rank])
+    rankAscending=sorted((cards),key=lambda card: card.order)
     runLength=1
     maxRunLength=0
     for i in range(len(rankAscending)-1):
-        if rank_order[rankAscending[i].rank]+1==rank_order[rankAscending[i+1].rank]:
+        if cards[i].order+1==cards[i+1].order:
             runLength+=1
         elif (runLength>=3):
             maxRunLength=max(maxRunLength,runLength)
