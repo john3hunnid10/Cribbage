@@ -1,8 +1,7 @@
 from deckObject import Card
 from deckObject import Deck
 import itertools
-#the rank order is stored, so that the hand can be sorted in rank order in order to form runs
-rank_order={'A':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':11,'Q':12,'K':13}
+
 def main(hand: list[Card])->list[Card]:
     #creating the deck object, then removing the 6 cards in the hand
     deck=Deck()
@@ -25,7 +24,7 @@ def main(hand: list[Card])->list[Card]:
     
     
 
-def averagePoints(hand,flops: list[Card])->int:
+def averagePoints(hand: list[Card], flops: list[Card])->int:
     #if the 4 card had is a flush, it will always be worth 4 points or more.
     #that is why check_flush returns 1, because when called later while checking a 5 card hand, a full flush is 5 points.
     #the reason the check is done before is because in cribbage you can only get a flush by having the 4 cards in your original hand.
@@ -39,6 +38,8 @@ def averagePoints(hand,flops: list[Card])->int:
     return avgPoints
 
 def check_run(cards: list[Card])->int:
+    #the rank order is stored, so that the hand can be sorted in rank order in order to form runs
+    rank_order={'A':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':11,'Q':12,'K':13}
     #the combination is sorted in rank order to make checking for runs easier
     rankAscending=sorted((cards),key=lambda card: rank_order[card.rank])
     runLength=1
@@ -83,45 +84,45 @@ def PointsCounter(hand: list[Card]) -> int:
     return points
 
 
+#testing code
+# FiChand1=[Card('5',5,'S'),
+#       Card('K',10,'S'),
+#       Card('J',10,'C'),
+#       Card('10',10,'D'),
+#       Card('5',5,'H')
+#     ]
+# FiChand2=[Card('5',5,'S'),
+#       Card('6',6,'H'),
+#       Card('J',10,'C'),
+#       Card('10',10,'D'),
+#       Card('4',4,'C')
+#     ]
+# FiChand3=[Card('4',4,'H'),
+#        Card('2',2,'H'),
+#        Card('K',10,'H'),
+#        Card('9',9,'H'),
+#        Card('A',1,'H')
+#     ]
 
-hand1=[Card('5',5,'S'),
-      Card('K',10,'S'),
-      Card('J',10,'C'),
-      Card('10',10,'D'),
-      Card('5',5,'H')
-    ]
-hand2=[Card('5',5,'S'),
-      Card('6',6,'H'),
-      Card('J',10,'C'),
-      Card('10',10,'D'),
-      Card('4',4,'C')
-    ]
-hand3=[Card('4',4,'H'),
-       Card('2',2,'H'),
-       Card('K',10,'H'),
-       Card('9',9,'H'),
-       Card('A',1,'H')
-    ]
-
-FourCardhand1=[Card('5',5,'S'),
-      Card('K',10,'S'),
-      Card('J',10,'C'),
-      Card('10',10,'D'),
-    ]
-SixCardHand=[Card('5',5,'S'),
-      Card('6',6,'H'),
-      Card('J',10,'C'),
-      Card('10',10,'D'),
-      Card('4',4,'C'),
-      Card('A',1,'D')
-      ]
-print("hand1 is:",PointsCounter(hand1))
-print("hand2 is:",PointsCounter(hand2))
-print("hand3 is:",PointsCounter(hand3)+4)
+# FoChand1=[Card('5',5,'S'),
+#       Card('K',10,'S'),
+#       Card('J',10,'C'),
+#       Card('10',10,'D'),
+#     ]
+# SCHand=[Card('5',5,'S'),
+#       Card('6',6,'H'),
+#       Card('J',10,'C'),
+#       Card('10',10,'D'),
+#       Card('4',4,'C'),
+#       Card('A',1,'D')
+#       ]
+# print("hand1 is:",PointsCounter(FiChand1))
+# print("hand2 is:",PointsCounter(FiChand2))
+# print("hand3 is:",PointsCounter(FiChand3)+4)
 #deck=Deck()
 #print(deck)
-#deck.removeCards(FourCardhand1)
+#deck.removeCards(FoChand1)
 #print(deck)
 #flops=deck.deal(46)
-#print("average points for FourCardhand1 is: ",averagePoints(FourCardhand1,flops))
-print("the best 4 card hand, given the input:",main(SixCardHand))
+#print("average points for FoChand1 is: ",averagePoints(FourCardhand1,flops))
+#print("the best 4 card hand, given the input:",main(SCHand))
