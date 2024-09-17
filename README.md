@@ -15,7 +15,7 @@ Jack of Clubs
 4 of Clubs
 10 of Diamonds
 where:A=Ace, J=Jack, Q=Queen, K=King and suits are: S=Spades, H=Hearts, D=Diamonds, C=Clubs
-You can copy and paste this into the bottom as a template:
+You can copy and paste this into the bottom as a template: \n
 InputHand=[Card('5',5,'S'),
 Card('6',6,'H'),
 Card('J',10,'C'),
