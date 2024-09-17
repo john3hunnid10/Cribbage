@@ -7,6 +7,7 @@ def main(hand: list[Card])->list[Card]:
     deck=Deck()
     deck.removeCards(hand)
     #creating a list of all the 46 cards left in the deck
+    deck.shuffle()
     flops=deck.deal(46)
     #creating a list of all 4 card combinations in a 6 card hand
     FourCardcombins,FourCardAvgs=[],[]
