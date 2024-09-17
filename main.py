@@ -16,7 +16,6 @@ def main(hand: list[Card])->list[Card]:
     FourCardcombins.extend(itertools.combinations(hand,4))
     #creating a list of all the average score of each hand
     for combins in FourCardcombins:
-        combins=list(combins)
         FourCardAvgs.append(averagePoints(combins,flops))
     #getting the index of the highest scoring hand on average and returning the 4 card combination at that index
     MaxHand=FourCardcombins[FourCardAvgs.index(max(FourCardAvgs))]
