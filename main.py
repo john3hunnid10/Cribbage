@@ -31,10 +31,15 @@ def averagePoints(hand: list[Card], flops: list[Card])->int:
     #if the 4 card had is a flush, it will always be worth 4 points or more.
     #that is why check_flush returns 1, because when called later while checking a 5 card hand, a full flush is 5 points.
     #the reason the check is done before is because in cribbage you can only get a flush by having the 4 cards in your original hand.
+    #for testing purposes hand gets typecast to a list
+    hand=list(hand)
     avgPoints=0
     #it gets the sum of all 46 possible 5 card hand combinations divides by 46 and returns that integer
     for flop in flops:
-       avgPoints+=PointsCounter(hand+[flop])
+       #the flop card gets added to the 
+       hand.append(flop)
+       avgPoints+=(PointsCounter(hand))
+       hand.pop()
     avgPoints=avgPoints/46
     if(check_flush(hand)==1):
         avgPoints+=4
@@ -97,7 +102,6 @@ SCHand=[Card('5','S'),
       Card('A','D')
       ]
 print("the best 4 card hand, given the input is:",main(SCHand))
-
 #testing code
 # FiChand1=[Card('5',5,'S'),
 #       Card('K',10,'S'),
@@ -127,9 +131,20 @@ print("the best 4 card hand, given the input is:",main(SCHand))
 # print("hand1 is:",PointsCounter(FiChand1))
 # print("hand2 is:",PointsCounter(FiChand2))
 # print("hand3 is:",PointsCounter(FiChand3)+4)
-#deck=Deck()
+
 #print(deck)
 #deck.removeCards(FoChand1)
-#print(deck)
-#flops=deck.deal(46)
+
 #print("average points for FoChand1 is: ",averagePoints(FourCardhand1,flops))
+# deckTest1=Deck()
+# deckTest1.removeCards(SCHand)
+# flopsTest1=list(deckTest1.deal(46))
+# handtest=list([Card('5','S'),
+#       Card('6','H'),
+#       Card('10','D'),
+#       Card('4','C'),])
+# print(averagePoints(handtest,flopsTest1))
+# handGiven=main(SCHand)
+# print(averagePoints(handGiven,flopsTest1))
+# print(PointsCounter(handtest))
+# print(PointsCounter(handGiven))
