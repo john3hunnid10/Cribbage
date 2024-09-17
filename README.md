@@ -21,5 +21,5 @@ Card('6',6,'H'),
 Card('J',10,'C'),
 Card('10',10,'D'),
 Card('4',4,'C'),
-Card('A',1,'D')]
+Card('A',1,'D')]            
 print("the best 4 card hand, given the input:",main(InputHand)
