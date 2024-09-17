@@ -3,6 +3,8 @@ from deckObject import Deck
 import itertools
 
 def main(hand: list[Card])->list[Card]:
+    if(len(hand)!=6):
+        raise Exception('Hand has too many cards')
     #creating the deck object, then removing the 6 cards in the hand
     deck=Deck()
     deck.removeCards(hand)
@@ -84,6 +86,18 @@ def PointsCounter(hand: list[Card]) -> int:
     return points
 
 
+#example code: fill in how you see fit
+# A=Ace, J=Jack, Q=Queen, K=King
+# S=Spades, H=Hearts, D=Diamonds, C=Clubs
+SCHand=[Card('5','S'),
+      Card('6','H'),
+      Card('J','C'),
+      Card('10','D'),
+      Card('4','C'),
+      Card('A','D')
+      ]
+print("the best 4 card hand, given the input is:",main(SCHand))
+
 #testing code
 # FiChand1=[Card('5',5,'S'),
 #       Card('K',10,'S'),
@@ -109,13 +123,7 @@ def PointsCounter(hand: list[Card]) -> int:
 #       Card('J',10,'C'),
 #       Card('10',10,'D'),
 #     ]
-SCHand=[Card('5','S'),
-      Card('6','H'),
-      Card('J','C'),
-      Card('10','D'),
-      Card('4','C'),
-      Card('A','D')
-      ]
+
 # print("hand1 is:",PointsCounter(FiChand1))
 # print("hand2 is:",PointsCounter(FiChand2))
 # print("hand3 is:",PointsCounter(FiChand3)+4)
@@ -125,4 +133,3 @@ SCHand=[Card('5','S'),
 #print(deck)
 #flops=deck.deal(46)
 #print("average points for FoChand1 is: ",averagePoints(FourCardhand1,flops))
-print("the best 4 card hand, given the input:",main(SCHand))
