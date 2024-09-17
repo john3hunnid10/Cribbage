@@ -49,15 +49,18 @@ def check_run(cards: list[Card])->int:
     #the combination is sorted in rank order to make checking for runs easier
     rankAscending=sorted((cards),key=lambda card: card.order)
     runLength=1
-    maxRunLength=0
+    maxRunLength=1
     for i in range(len(rankAscending)-1):
-        if cards[i].order+1==cards[i+1].order:
+        if rankAscending[i].order+1==rankAscending[i+1].order:
             runLength+=1
-        elif (runLength>=3):
+        else:
             maxRunLength=max(maxRunLength,runLength)
-        runLength=1
-    if(runLength>=3):
+            runLength=1
+    
+    if(maxRunLength>=3):
         maxRunLength=max(maxRunLength,runLength)
+    else:
+        return 0
     return maxRunLength
 def check_flush(cards: list[Card])->int:
     #since a 4 card flush can only be awarded if the 4 cards are in the original hand, the points will be added to the value before the flop
@@ -101,6 +104,8 @@ SCHand=[Card('5','S'),
       Card('A','D')
       ]
 print("the best 4 card hand, given the input is:",main(SCHand))
+
+
 #testing code
 # FiChand1=[Card('5',5,'S'),
 #       Card('K',10,'S'),
@@ -142,6 +147,7 @@ print("the best 4 card hand, given the input is:",main(SCHand))
 #       Card('6','H'),
 #       Card('10','D'),
 #       Card('4','C'),])
+# print(check_run(handtest))
 # print(averagePoints(handtest,flopsTest1))
 # handGiven=main(SCHand)
 # print(averagePoints(handGiven,flopsTest1))
