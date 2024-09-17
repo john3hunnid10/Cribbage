@@ -10,17 +10,14 @@ def main(hand: list[Card])->list[Card]:
     #creating a list of all the 46 cards left in the deck
     flops=deck.deal(46)
     #creating a list of all 4 card combinations in a 6 card hand
-    FourCardcombins=[]
+    FourCardcombins,FourCardAvgs=[],[]
     FourCardcombins.extend(itertools.combinations(hand,4))
     #creating a list of all the average score of each hand
-    FourCardAvgs=[]
     for combins in FourCardcombins:
         combins=list(combins)
         FourCardAvgs.append(averagePoints(combins,flops))
-    #getting the index of the highest scoring hand on average
-    MaxHandIndex=FourCardAvgs.index(max(FourCardAvgs))
-    #returning the 4 card combination at that index
-    MaxHand=FourCardcombins[MaxHandIndex]
+    #getting the index of the highest scoring hand on average and returning the 4 card combination at that index
+    MaxHand=FourCardcombins[FourCardAvgs.index(max(FourCardAvgs))]
     return MaxHand
     
 
@@ -32,15 +29,13 @@ def averagePoints(hand,flops: list[Card])->int:
     #if the 4 card had is a flush, it will always be worth 4 points or more.
     #that is why check_flush returns 1, because when called later while checking a 5 card hand, a full flush is 5 points.
     #the reason the check is done before is because in cribbage you can only get a flush by having the 4 cards in your original hand.
-    if(check_flush(hand)==1):
-        avgPoints=4
-    else:
-        avgPoints=0
-    #print(flops)
+    avgPoints=0
     #it gets the sum of all 46 possible 5 card hand combinations divides by 46 and returns that integer
     for flop in flops:
        avgPoints+=PointsCounter(hand+[flop])
     avgPoints=avgPoints/46
+    if(check_flush(hand)==1):
+        avgPoints+=4
     return avgPoints
 
 def check_run(cards: list[Card])->int:
