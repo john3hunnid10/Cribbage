@@ -8,7 +8,6 @@ def main(hand: list[Card])->list[Card]:
     deck=Deck()
     deck.removeCards(hand)
     #creating a list of all the 46 cards left in the deck
-    deck.shuffle()
     flops=deck.deal(46)
     #creating a list of all 4 card combinations in a 6 card hand
     FourCardcombins=[]
@@ -16,6 +15,7 @@ def main(hand: list[Card])->list[Card]:
     #creating a list of all the average score of each hand
     FourCardAvgs=[]
     for combins in FourCardcombins:
+        combins=list(combins)
         FourCardAvgs.append(averagePoints(combins,flops))
     #getting the index of the highest scoring hand on average
     MaxHandIndex=FourCardAvgs.index(max(FourCardAvgs))
@@ -36,8 +36,11 @@ def averagePoints(hand,flops: list[Card])->int:
         avgPoints=4
     else:
         avgPoints=0
+    #print(flops)
     #it gets the sum of all 46 possible 5 card hand combinations divides by 46 and returns that integer
-    avgPoints+=sum([PointsCounter(hand+[flopCard]) for flopCard in flops])/46
+    for flop in flops:
+       avgPoints+=PointsCounter(hand+[flop])
+    avgPoints=avgPoints/46
     return avgPoints
 
 def check_run(cards: list[Card])->int:
@@ -120,4 +123,10 @@ SixCardHand=[Card('5',5,'S'),
 print("hand1 is:",PointsCounter(hand1))
 print("hand2 is:",PointsCounter(hand2))
 print("hand3 is:",PointsCounter(hand3)+4)
+#deck=Deck()
+#print(deck)
+#deck.removeCards(FourCardhand1)
+#print(deck)
+#flops=deck.deal(46)
+#print("average points for FourCardhand1 is: ",averagePoints(FourCardhand1,flops))
 print("the best 4 card hand, given the input:",main(SixCardHand))

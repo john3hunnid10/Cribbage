@@ -11,6 +11,9 @@ class Card:
     #print function for testing
     def __repr__(self):
         return f"{self.rank} of {self.suit} (Value: {self.value})"
+    #equal function for removal of cards
+    def __eq__(self, other):
+        return self.rank==other.rank and self.suit==other.suit
 
 class Deck:
     #available suits H=hearts, D=diamonds, C=clubs, S=spades 
@@ -30,11 +33,11 @@ class Deck:
     #shows how many cards are left
     def __len__(self):
         return len(self.cards)
-    
+    #print the deck for testing
+    def __repr__(self):
+        return f"Deck with {len(self.cards)} cards"
     #Note: always shuffle before deal 
     def deal(self, numCards:int):
-        if(numCards>len(self.cards)):
-            return -1
         hand=self.cards[:numCards]
         self.cards=self.cards[numCards:]
         return hand
@@ -42,6 +45,6 @@ class Deck:
 
     #removal function, it loops through the deck and takes out the specified cards
     def removeCards(self, hand):
-        for cards in hand:
-            for cards in self.cards:
-                self.cards.remove(cards)
+        for card in hand:
+            if card in self.cards:
+                self.cards.remove(card)
