@@ -109,13 +109,13 @@ def PointsCounter(hand: list[Card]) -> int:
 #       Card('J',10,'C'),
 #       Card('10',10,'D'),
 #     ]
-# SCHand=[Card('5',5,'S'),
-#       Card('6',6,'H'),
-#       Card('J',10,'C'),
-#       Card('10',10,'D'),
-#       Card('4',4,'C'),
-#       Card('A',1,'D')
-#       ]
+SCHand=[Card('5','S'),
+      Card('6','H'),
+      Card('J','C'),
+      Card('10','D'),
+      Card('4','C'),
+      Card('A','D')
+      ]
 # print("hand1 is:",PointsCounter(FiChand1))
 # print("hand2 is:",PointsCounter(FiChand2))
 # print("hand3 is:",PointsCounter(FiChand3)+4)
@@ -125,4 +125,4 @@ def PointsCounter(hand: list[Card]) -> int:
 #print(deck)
 #flops=deck.deal(46)
 #print("average points for FoChand1 is: ",averagePoints(FourCardhand1,flops))
-#print("the best 4 card hand, given the input:",main(SCHand))
+print("the best 4 card hand, given the input:",main(SCHand))

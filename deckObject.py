@@ -29,7 +29,8 @@ class Card:
         self.order=self.rank_order[rank]
     #print function for testing
     def __repr__(self):
-        return f"{self.rank} of {self.suit}"
+        str_rank={'S':"Spades",'H':"Hearts",'D':"Diamonds",'C':"Clubs"}
+        return f"{self.rank} of {str_rank[self.suit]}"
     #equal function for removal of cards
     def __eq__(self, other):
         return self.rank==other.rank and self.suit==other.suit
