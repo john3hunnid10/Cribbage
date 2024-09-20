@@ -2,9 +2,16 @@ from deckObject import Card
 from deckObject import Deck
 import itertools
 
+#This is the main function, that takes in a 6 card hand input and returns the 4 card hand with the highest average points
+
 def main(hand: list[Card])->list[Card]:
+    #checking that the hand is 6 card hand
+    for card in hand:
+        if type(card)!=Card:
+            raise Exception("not all cards are a card object")
     if(len(hand)!=6):
         raise Exception('Hand has too many cards')
+    
     #creating the deck object, then removing the 6 cards in the hand
     deck=Deck()
     deck.removeCards(hand)
@@ -20,12 +27,9 @@ def main(hand: list[Card])->list[Card]:
     #getting the index of the highest scoring hand on average and returning the 4 card combination at that index
     MaxHand=FourCardcombins[FourCardAvgs.index(max(FourCardAvgs))]
     return MaxHand
-    
 
-    
-    
-    
-
+#this function takes an input of the 4 hand, and the 46 possible draws from the deck
+# it returns the average points of the hand    
 def averagePoints(hand: list[Card], flops: list[Card])->int:
     #if the 4 card had is a flush, it will always be worth 4 points or more.
     #that is why check_flush returns 1, because when called later while checking a 5 card hand, a full flush is 5 points.
@@ -44,6 +48,7 @@ def averagePoints(hand: list[Card], flops: list[Card])->int:
         avgPoints+=4
     return avgPoints
 
+#this function takes in a 5 card hand input, and returns the length of the run given that the run is longer than 3
 def check_run(cards: list[Card])->int:
     #the rank order is stored, so that the hand can be sorted in rank order in order to form runs
     #the combination is sorted in rank order to make checking for runs easier
@@ -62,6 +67,8 @@ def check_run(cards: list[Card])->int:
     else:
         return 0
     return maxRunLength
+
+#this function takes in a 4 or 5 card hand and returns a 1 if all cards are the same suit and 0 if not
 def check_flush(cards: list[Card])->int:
     #since a 4 card flush can only be awarded if the 4 cards are in the original hand, the points will be added to the value before the flop
     #therefore when it is a 5 card flush it is only worth 1 more point so that is why 5 points aren't being added
@@ -70,7 +77,7 @@ def check_flush(cards: list[Card])->int:
             return 0
     return 1
 
-
+#this function takes in a 5 card hand and returns how many points its worth the points for 4 card flush are added after
 def PointsCounter(hand: list[Card]) -> int:
     #this first creates each combination of 2+ cards to use to add up points
     combinations=[]
@@ -107,29 +114,29 @@ print("the best 4 card hand, given the input is:",main(SCHand))
 
 
 #testing code
-# FiChand1=[Card('5',5,'S'),
-#       Card('K',10,'S'),
-#       Card('J',10,'C'),
-#       Card('10',10,'D'),
-#       Card('5',5,'H')
+# FiChand1=[Card('5','S'),
+#       Card('K','S'),
+#       Card('J','C'),
+#       Card('10','D'),
+#       Card('5','H')
 #     ]
-# FiChand2=[Card('5',5,'S'),
-#       Card('6',6,'H'),
-#       Card('J',10,'C'),
-#       Card('10',10,'D'),
-#       Card('4',4,'C')
+# FiChand2=[Card('5','S'),
+#       Card('6','H'),
+#       Card('J','C'),
+#       Card('10','D'),
+#       Card('4','C')
 #     ]
-# FiChand3=[Card('4',4,'H'),
-#        Card('2',2,'H'),
-#        Card('K',10,'H'),
-#        Card('9',9,'H'),
-#        Card('A',1,'H')
+# FiChand3=[Card('4','H'),
+#        Card('2','H'),
+#        Card('K','H'),
+#        Card('9','H'),
+#        Card('A','H')
 #     ]
 
-# FoChand1=[Card('5',5,'S'),
-#       Card('K',10,'S'),
-#       Card('J',10,'C'),
-#       Card('10',10,'D'),
+# FoChand1=[Card('5','S'),
+#       Card('K','S'),
+#       Card('J','C'),
+#       Card('10','D'),
 #     ]
 
 # print("hand1 is:",PointsCounter(FiChand1))
