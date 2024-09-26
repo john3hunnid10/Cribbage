@@ -25,7 +25,8 @@ Ace of Diamonds.
 Where A=Ace, J=Jack, Q=Queen, K=King and suits are: S=Spades, H=Hearts, D=Diamonds, C=Clubs
 
 You can copy and paste this into the bottom as a template:              
-```InputHand=[Card('5','S'),
+```
+InputHand=[Card('5','S'),
 Card('6','H'),
 Card('J','C'),
 Card('10','D'),
