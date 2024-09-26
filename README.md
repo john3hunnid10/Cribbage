@@ -32,5 +32,7 @@ Card('10','D'),
 Card('4','C'),
 Card('A','D')] 
 ```
-```print("the best 4 card hand, given the input:",main(InputHand))```
+```
+print("the best 4 card hand, given the input:",main(InputHand))
+```
 OUTPUT: the best 4 card hand, given the input is: (5 of Spades, 6 of Hearts, J of Clubs, 4 of Clubs)
