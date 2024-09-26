@@ -6,13 +6,9 @@ For now, it doesn't ackoneldge that giving up 5 cards is bad, or to slightly pre
 It does its calculations based on average hand value.
 
 An input for a hand would be: 
-main([Card('5','S'),
-Card('6','H'),
-Card('J','C'),
-Card('10','D'),
-Card('4','C'),
-Card('A','D')])
-
+```
+main([Card('5','S'), Card('6','H'), Card('J','C'), Card('10','D'), Card('4','C'), Card('A','D')])
+```
 This corresponds to a 6 card hand with:
 5 of Spades,
 6 of Hearts,
@@ -26,7 +22,7 @@ Where A=Ace, J=Jack, Q=Queen, K=King and suits are: S=Spades, H=Hearts, D=Diamon
 
 You can copy and paste this into the bottom as a template:              
 ```
-InputHand=[Card('5','S'),Card('6','H'),Card('J','C'),Card('10','D'),Card('4','C'),Card('A','D')] 
+InputHand=[Card('5','S'), Card('6','H'), Card('J','C'), Card('10','D'), Card('4','C'), Card('A','D')] 
 ```
 ```
 print("the best 4 card hand, given the input:",main(InputHand))
