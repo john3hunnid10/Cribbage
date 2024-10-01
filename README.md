@@ -2,7 +2,7 @@ Rules of Cribbage: https://en.wikipedia.org/wiki/Rules_of_cribbage
 
 This program takes a 6 card hand in Cribbage, and then returns the best 4 card hand.
 To do this, it checks all possible "flip cards" that make a 5 card hand and return the 4 card hand that have the highest average points.
-For now, it doesn't ackoneldge that giving up a 5 card is bad, or to slightly prefer lower cards to get better chances at pegging, so it is not perfect.
+For now, it doesn't acknowledge that giving up a 5 card is bad, or to slightly prefer lower cards to get better chances at pegging, so it is not perfect.
 It does its calculations based on average hand value.
 
 An input for a hand would be: 
