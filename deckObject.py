@@ -12,12 +12,12 @@ class Card:
             if(suit.upper() in ('S','H','D','C')):
                 suit=suit.upper()
             else:
-                raise Exception('Invalid Suit')
+                raise ValueError('Invalid Suit')
         if(rank not in self.rank_order):
             if(rank.upper() in ('A','J','Q','K')):
                 rank=rank.upper()
             else:
-                raise Exception('Invalid rank')
+                raise ValueError('Invalid rank')
         #If you're keeping track through versions you'll notice I removed value as an input and instead added it in construction
         #this was to make it more user friendly so now an input is Card('5','S') instead of Card('5',5,'S')
         self.suit=suit

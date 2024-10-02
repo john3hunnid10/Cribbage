@@ -8,9 +8,9 @@ def main(hand: list[Card])->list[Card]:
     #checking that the hand is 6 card hand
     for card in hand:
         if type(card)!=Card:
-            raise Exception("not all cards are a card object")
+            raise ValueError("not all cards are a card object")
     if(len(hand)!=6):
-        raise Exception('Hand has too many cards')
+        raise ValueError('Hand has too many cards')
     
     #creating the deck object, then removing the 6 cards in the hand
     deck=Deck()
