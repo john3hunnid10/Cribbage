@@ -1,7 +1,5 @@
-#deck Object
+#imports
 import random
-
-
 #card class
 class Card:
     rank_order={'A':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9,'10':10,'J':11,'Q':12,'K':13}
@@ -34,15 +32,18 @@ class Card:
     #equal function for removal of cards
     def __eq__(self, other):
         return self.rank==other.rank and self.suit==other.suit
-
+#Deck class
 class Deck:
+    
     #available suits H=hearts, D=diamonds, C=clubs, S=spades 
     suits=['H','D','C','S']
     #ranks has each rank of card 
     ranks=['A','2','3','4','5','6','7','8','9','10','J','Q','K']
+    
     #The deck is constructed with every combination of suit rank
     def __init__(self):
         self.cards=[Card(rank,suit) for rank in self.ranks for suit in self.suits]
+    
     #shuffles the deck
     def shuffle(self):
         random.shuffle(self.cards)
@@ -50,14 +51,18 @@ class Deck:
     #shows how many cards are left
     def __len__(self):
         return len(self.cards)
+    
     #print the deck for testing
     def __repr__(self):
         return f"Deck with {len(self.cards)} cards left"
-    def deal(self, numCards:int):
+    
+    #given an integer numCards, return the first numCards elements in the deck and remove them
+    def deal(self, numCards:int)->list[Card]:
         hand=self.cards[:numCards]
         self.cards=self.cards[numCards:]
+        #the deal returned is a list of Card Objects
         return hand
-    #the deal returned is a list of Card Objects
+        
 
     #removal function, it loops through the deck and takes out the specified cards
     def removeCards(self, hand: list[Card]):

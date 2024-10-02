@@ -1,3 +1,4 @@
+#imports
 from deckObject import Card
 from deckObject import Deck
 import itertools
@@ -44,7 +45,7 @@ def averagePoints(hand: list[Card], flops: list[Card])->int:
        avgPoints+=(PointsCounter(hand))
        hand.pop()
     avgPoints=avgPoints/46
-    if(check_flush(hand)==1):
+    if(check_flush):
         avgPoints+=4
     return avgPoints
 
@@ -68,14 +69,14 @@ def check_run(cards: list[Card])->int:
         return 0
     return maxRunLength
 
-#this function takes in a 4 or 5 card hand and returns a 1 if all cards are the same suit and 0 if not
-def check_flush(cards: list[Card])->int:
+#this function takes in a 4 or 5 card hand and returns true if all cards are the same suit and false if not
+def check_flush(cards: list[Card])->bool:
     #since a 4 card flush can only be awarded if the 4 cards are in the original hand, the points will be added to the value before the flop
     #therefore when it is a 5 card flush it is only worth 1 more point so that is why 5 points aren't being added
     for i in range(len(cards)-1):
         if(cards[i].suit!=cards[i+1].suit):
-            return 0
-    return 1
+            return False
+    return True
 
 #this function takes in a 5 card hand and returns how many points its worth the points for 4 card flush are added after
 def PointsCounter(hand: list[Card]) -> int:
@@ -96,7 +97,8 @@ def PointsCounter(hand: list[Card]) -> int:
        #in order to prevent redundancy, runs and flushes are only checked when the whole hand is being observed 
         if(len(combins)==5):
             points+=check_run(combins)
-            points+=check_flush(combins)
+            if(check_flush(hand)):
+                points+=1
     return points
 
 
