@@ -6,6 +6,9 @@ class Card:
     def __init__(self,rank:str,suit:str):
         #check inputs,
         #if suit or rank is lowercase it gets turned uppercase
+
+        # just uppercase it. No need to check
+
         if (suit not in ('S','H','D','C')):
             if(suit.upper() in ('S','H','D','C')):
                 suit=suit.upper()
@@ -34,16 +37,16 @@ class Card:
         return self.rank==other.rank and self.suit==other.suit
 #Deck class
 class Deck:
-    
-    #available suits H=hearts, D=diamonds, C=clubs, S=spades 
+
+    #available suits H=hearts, D=diamonds, C=clubs, S=spades
     suits=['H','D','C','S']
-    #ranks has each rank of card 
+    #ranks has each rank of card
     ranks=['A','2','3','4','5','6','7','8','9','10','J','Q','K']
-    
+
     #The deck is constructed with every combination of suit rank
     def __init__(self):
         self.cards=[Card(rank,suit) for rank in self.ranks for suit in self.suits]
-    
+
     #shuffles the deck
     def shuffle(self):
         random.shuffle(self.cards)
@@ -51,18 +54,18 @@ class Deck:
     #shows how many cards are left
     def __len__(self):
         return len(self.cards)
-    
+
     #print the deck for testing
     def __repr__(self):
         return f"Deck with {len(self.cards)} cards left"
-    
+
     #given an integer numCards, return the first numCards elements in the deck and remove them
     def deal(self, numCards:int)->list[Card]:
         hand=self.cards[:numCards]
         self.cards=self.cards[numCards:]
         #the deal returned is a list of Card Objects
         return hand
-        
+
 
     #removal function, it loops through the deck and takes out the specified cards
     def removeCards(self, hand: list[Card]):
