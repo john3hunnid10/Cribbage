@@ -1,36 +1,73 @@
+# Everything, including comments,  should fit on a single line in a reasonable editor.
+# Historically that's 80 characters. Now it shouldn't be more than like 100. You linter
+# should handle this for you. Also your non-pythonic spacing
+
+# https://github.com/psf/black
+
+# delete this. I know that
 #imports
-from deckObject import Card
-from deckObject import Deck
+
+# I'm anal about the way imports should be written.
+# These sections w/ line breaks
+
+# built-ins in alphebetical order
 import itertools
 
-#This is the main function, that takes in a 6 card hand input and returns the 4 card hand with the highest average points
+# external packages in alphabetical order
 
-def main(hand: list[Card])->list[Card]:
+# local packages in alphabetical order
+
+# in python we use snake_case not camelCase so it should be deck_object
+# however, that's not an object, it's a class (actually a module containing a class)
+# from deck_object import DeckObject
+# I'd do from deck_models import Card, Deck
+from deckObject import Card, Deck
+
+
+# Code says what it does, comments say _why_. There should not be many comments
+# Ideally, I would never read your code unless I was trying to copy it or modify it
+# If you want to explain the algorithm it goes in the docstring.
+
+def main(hand: list[Card]) -> list[Card]:
+    '''Takes in a 6 card hand input and returns the 4 card hand with the highest average points
+
+    This is the main function that takes in a 6 card hand input and returns the 4 card hand
+    with the highest average points.
+
+    We create a new deck, remove the input hand, and create a list of the remaining cards.
+    Then we create a list of all 4 card combinations in a 6 card hand, as well as their
+    averages. ...
+
+    Args:
+        those
+
+    Returns:
+        these
+
+    Raises:
+        Also
+
+    '''
     #checking that the hand is 6 card hand
     for card in hand:
-        if type(card)!=Card:
+        if type(card) != Card:
             raise ValueError("not all cards are a card object")
-    if(len(hand)!=6):
+    if (len(hand) != 6):
         raise ValueError('Hand has too many cards')
-    
-    #creating the deck object, then removing the 6 cards in the hand
+
     deck=Deck()
     deck.removeCards(hand)
-    #creating a list of all the 46 cards left in the deck
     deck.shuffle()
     flops=deck.deal(46)
-    #creating a list of all 4 card combinations in a 6 card hand, and their averages
     FourCardcombins,FourCardAvgs=[],[]
     FourCardcombins.extend(itertools.combinations(hand,4))
-    #creating a list of all the average score of each hand
     for combins in FourCardcombins:
         FourCardAvgs.append(averagePoints(combins,flops))
-    #getting the index of the highest scoring hand on average and returning the 4 card combination at that index
     MaxHand=FourCardcombins[FourCardAvgs.index(max(FourCardAvgs))]
     return MaxHand
 
 #this function takes an input of the 4 hand, and the 46 possible draws from the deck
-# it returns the average points of the hand    
+# it returns the average points of the hand
 def averagePoints(hand: list[Card], flops: list[Card])->int:
     #if the 4 card had is a flush, it will always be worth 4 points or more.
     #that is why check_flush returns 1, because when called later while checking a 5 card hand, a full flush is 5 points.
@@ -40,7 +77,7 @@ def averagePoints(hand: list[Card], flops: list[Card])->int:
     avgPoints=0
     #it gets the sum of all 46 possible 5 card hand combinations divides by 46 and returns that integer
     for flop in flops:
-       #the flop card gets added to the 
+       #the flop card gets added to the
        hand.append(flop)
        avgPoints+=(PointsCounter(hand))
        hand.pop()
@@ -62,7 +99,7 @@ def check_run(cards: list[Card])->int:
         else:
             maxRunLength=max(maxRunLength,runLength)
             runLength=1
-    
+
     if(maxRunLength>=3):
         maxRunLength=max(maxRunLength,runLength)
     else:
@@ -94,7 +131,7 @@ def PointsCounter(hand: list[Card]) -> int:
         if(len(combins))==2:
             if(combins[0].rank==combins[1].rank):
                 points+=2
-       #in order to prevent redundancy, runs and flushes are only checked when the whole hand is being observed 
+       #in order to prevent redundancy, runs and flushes are only checked when the whole hand is being observed
         if(len(combins)==5):
             points+=check_run(combins)
             if(check_flush(hand)):
@@ -102,63 +139,6 @@ def PointsCounter(hand: list[Card]) -> int:
     return points
 
 
-#example code: fill in how you see fit
-# A=Ace, J=Jack, Q=Queen, K=King
-# S=Spades, H=Hearts, D=Diamonds, C=Clubs
-SCHand=[Card('5','S'),
-      Card('6','H'),
-      Card('J','C'),
-      Card('10','D'),
-      Card('4','C'),
-      Card('A','D')
-      ]
-print("the best 4 card hand, given the input is:",main(SCHand))
-
-
-#testing code
-# FiChand1=[Card('5','S'),
-#       Card('K','S'),
-#       Card('J','C'),
-#       Card('10','D'),
-#       Card('5','H')
-#     ]
-# FiChand2=[Card('5','S'),
-#       Card('6','H'),
-#       Card('J','C'),
-#       Card('10','D'),
-#       Card('4','C')
-#     ]
-# FiChand3=[Card('4','H'),
-#        Card('2','H'),
-#        Card('K','H'),
-#        Card('9','H'),
-#        Card('A','H')
-#     ]
-
-# FoChand1=[Card('5','S'),
-#       Card('K','S'),
-#       Card('J','C'),
-#       Card('10','D'),
-#     ]
-
-# print("hand1 is:",PointsCounter(FiChand1))
-# print("hand2 is:",PointsCounter(FiChand2))
-# print("hand3 is:",PointsCounter(FiChand3)+4)
-
-#print(deck)
-#deck.removeCards(FoChand1)
-
-#print("average points for FoChand1 is: ",averagePoints(FourCardhand1,flops))
-# deckTest1=Deck()
-# deckTest1.removeCards(SCHand)
-# flopsTest1=list(deckTest1.deal(46))
-# handtest=list([Card('5','S'),
-#       Card('6','H'),
-#       Card('10','D'),
-#       Card('4','C'),])
-# print(check_run(handtest))
-# print(averagePoints(handtest,flopsTest1))
-# handGiven=main(SCHand)
-# print(averagePoints(handGiven,flopsTest1))
-# print(PointsCounter(handtest))
-# print(PointsCounter(handGiven))
+# How is this intended to be called? I would personally use
+# https://click.palletsprojects.com/en/stable/ to make this a command line executable
+# that takes the path to a json blob that describes the hand
